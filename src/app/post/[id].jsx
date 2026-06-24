@@ -5,16 +5,14 @@ import {
   Image,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '@/styles/colors';
-import { mockComments } from '@/data/mockComments';
-import { ActionBar } from '@/components/ActionBar';
-import { CommentItem } from '@/components/CommentItem';
+import { Colors } from '../../styles/colors';
+import { mockComments } from '../../data/mockComments';
+import { ActionBar } from '../../components/ActionBar';
+import { CommentItem } from '../../components/CommentItem';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -47,10 +45,7 @@ export default function PostDetailScreen() {
               source={{ uri: 'https://placedog.net/200/200' }}
               style={styles.avatar}
             />
-            <View>
-              <Text style={styles.username}>@gato_lover</Text>
-              <Text style={styles.location}>Buenos Aires, Argentina</Text>
-            </View>
+            <Text style={styles.username}>@gato_lover</Text>
           </View>
 
           <ActionBar
@@ -69,7 +64,6 @@ export default function PostDetailScreen() {
           </View>
 
           <View style={styles.commentsSection}>
-            <Text style={styles.commentsTitle}>Comments</Text>
             {mockComments.map((comment) => (
               <CommentItem
                 key={comment.id}
@@ -78,6 +72,8 @@ export default function PostDetailScreen() {
               />
             ))}
           </View>
+
+          <Text style={styles.date}>Publicado hace 2 días</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -106,12 +102,14 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 12,
     paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.border,
   },
   avatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    borderWidth: 2,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 1.5,
     borderColor: Colors.accent,
   },
   username: {
@@ -119,31 +117,27 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 14,
   },
-  location: {
-    color: Colors.textSecondary,
-    fontSize: 12,
-  },
   captionSection: {
     paddingHorizontal: 12,
-    paddingVertical: 4,
+    paddingVertical: 8,
   },
   caption: {
     color: Colors.textPrimary,
     fontSize: 13,
+    lineHeight: 18,
   },
   captionUser: {
     fontWeight: '600',
   },
   commentsSection: {
-    paddingTop: 12,
-    paddingBottom: 24,
+    paddingVertical: 8,
   },
-  commentsTitle: {
+  date: {
     color: Colors.textSecondary,
-    fontSize: 13,
-    fontWeight: '600',
-    paddingHorizontal: 12,
-    marginBottom: 8,
+    fontSize: 10,
     textTransform: 'uppercase',
+    paddingHorizontal: 12,
+    paddingBottom: 16,
+    letterSpacing: 0.5,
   },
 });

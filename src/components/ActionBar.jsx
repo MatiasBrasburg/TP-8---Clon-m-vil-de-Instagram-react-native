@@ -1,17 +1,9 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '@/styles/colors';
+import { Colors } from '../styles/colors';
 
-interface ActionBarProps {
-  liked: boolean;
-  likeCount: number;
-  onLikePress: () => void;
-  onCommentPress: () => void;
-  onSharePress: () => void;
-}
-
-export function ActionBar({ liked, likeCount, onLikePress, onCommentPress, onSharePress }: ActionBarProps) {
+export function ActionBar({ liked, likeCount, onLikePress, onCommentPress, onSharePress }) {
   return (
     <View style={styles.container}>
       <View style={styles.actions}>

@@ -1,13 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Colors } from '@/styles/colors';
+import { Colors } from '../styles/colors';
 
-interface CommentItemProps {
-  username: string;
-  text: string;
-}
-
-export function CommentItem({ username, text }: CommentItemProps) {
+export function CommentItem({ username, text }) {
   return (
     <View style={styles.container}>
       <Text style={styles.username}>{username}</Text>

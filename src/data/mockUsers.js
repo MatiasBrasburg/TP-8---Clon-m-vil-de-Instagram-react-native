@@ -1,15 +1,4 @@
-export interface User {
-  id: string;
-  username: string;
-  avatar: string;
-  fullName: string;
-  bio: string;
-  followers: string;
-  following: string;
-  posts: number;
-}
-
-export const currentUser: User = {
+export const currentUser = {
   id: 'user_1',
   username: '@urquizoFranco',
   avatar: 'https://placedog.net/200/200',
@@ -20,7 +9,7 @@ export const currentUser: User = {
   posts: 12,
 };
 
-export const mockUsers: User[] = [
+export const mockUsers = [
   currentUser,
   {
     id: 'user_2',

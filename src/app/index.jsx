@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, FlatList, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
-import { Colors } from '@/styles/colors';
-import { fetchPosts, Post } from '@/services/catApi';
-import { FeedPost } from '@/components/FeedPost';
-import { StoriesList } from '@/components/StoriesList';
+import { Colors } from '../styles/colors';
+import { fetchPosts } from '../services/catApi';
+import { FeedPost } from '../components/FeedPost';
+import { StoriesList } from '../components/StoriesList';
 
 export default function HomeScreen() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,12 +37,19 @@ export default function HomeScreen() {
         data={posts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <FeedPost
-            post={item}
-            onPostPress={() => router.push(`/post/${item.id}` as any)}
-          />
+          <View style={styles.postWrapper}>
+            <FeedPost
+              post={item}
+              onPostPress={() => router.push(`/post/${item.id}`)}
+            />
+          </View>
         )}
-        ListHeaderComponent={<StoriesList />}
+        ListHeaderComponent={
+          <View>
+            <StoriesList />
+            <Text style={styles.trendingTitle}>TRENDING</Text>
+          </View>
+        }
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
@@ -59,5 +66,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  trendingTitle: {
+    color: Colors.textPrimary,
+    fontSize: 16,
+    fontWeight: '700',
+    letterSpacing: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  postWrapper: {
+    paddingHorizontal: 12,
   },
 });

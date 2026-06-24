@@ -2,7 +2,8 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '@/styles/colors';
+import { Colors } from '../styles/colors';
+import { CustomHeader } from '../components/CustomHeader';
 
 export default function TabLayout() {
   return (
@@ -10,8 +11,7 @@ export default function TabLayout() {
       <StatusBar style="light" />
       <Tabs
         screenOptions={{
-          headerStyle: { backgroundColor: Colors.background },
-          headerTintColor: Colors.textPrimary,
+          header: () => <CustomHeader />,
           tabBarStyle: {
             backgroundColor: Colors.background,
             borderTopColor: Colors.border,
@@ -24,8 +24,6 @@ export default function TabLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: 'Instagram',
-            headerTitleStyle: { fontFamily: 'System', fontWeight: '600', fontSize: 20 },
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="home" size={size} color={color} />
             ),
@@ -34,8 +32,6 @@ export default function TabLayout() {
         <Tabs.Screen
           name="profile"
           options={{
-            title: 'Profile',
-            headerTitleStyle: { fontWeight: '600' },
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="person" size={size} color={color} />
             ),

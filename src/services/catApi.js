@@ -2,24 +2,6 @@ import axios from 'axios';
 
 const CAT_API_URL = 'https://api.thecatapi.com/v1/images/search';
 
-export interface CatImage {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Post {
-  id: string;
-  imageUrl: string;
-  username: string;
-  avatar: string;
-  location: string;
-  likes: number;
-  caption: string;
-  comments: number;
-}
-
 const usernames = [
   '@gato_lover_01', '@gato_lover_02', '@gato_lover_03',
   '@gato_lover_04', '@gato_lover_05', '@gato_lover_06',
@@ -49,8 +31,8 @@ const captions = [
   'Cazando mariposas 🦋',
 ];
 
-export async function fetchPosts(limit: number = 12): Promise<Post[]> {
-  const response = await axios.get<CatImage[]>(`${CAT_API_URL}?limit=${limit}`);
+export async function fetchPosts(limit = 12) {
+  const response = await axios.get(`${CAT_API_URL}?limit=${limit}`);
   return response.data.map((cat, index) => ({
     id: cat.id,
     imageUrl: cat.url,

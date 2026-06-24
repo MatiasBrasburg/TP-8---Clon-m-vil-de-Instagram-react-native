@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import axios from 'axios';
-import { Colors } from '@/styles/colors';
-
-interface Story {
-  id: string;
-  url: string;
-  username: string;
-}
+import { Colors } from '../styles/colors';
 
 export function StoriesList() {
-  const [stories, setStories] = useState<Story[]>([]);
+  const [stories, setStories] = useState([]);
 
   useEffect(() => {
     axios
       .get('https://api.thecatapi.com/v1/images/search?limit=8')
       .then((response) => {
-        const mapped: Story[] = response.data.map((cat: any, index: number) => ({
+        const mapped = response.data.map((cat, index) => ({
           id: cat.id,
           url: cat.url,
           username: `@gato_fan_${index + 1}`,
@@ -26,7 +20,7 @@ export function StoriesList() {
       .catch((error) => console.error('Error loading stories:', error));
   }, []);
 
-  const yourStory: Story = {
+  const yourStory = {
     id: 'your-story',
     url: 'https://placedog.net/200/200',
     username: 'Your Story',
@@ -34,7 +28,7 @@ export function StoriesList() {
 
   const allStories = [yourStory, ...stories];
 
-  const renderStory = ({ item }: { item: Story }) => (
+  const renderStory = ({ item }) => (
     <View style={styles.storyItem}>
       <View style={[styles.storyRing, item.id === 'your-story' && styles.myStoryRing]}>
         <Image source={{ uri: item.url }} style={styles.storyImage} />
@@ -52,6 +46,7 @@ export function StoriesList() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.sectionTitle}>STORIES</Text>
       <FlatList
         data={allStories}
         renderItem={renderStory}
@@ -67,9 +62,18 @@ export function StoriesList() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.background,
-    paddingVertical: 12,
+    paddingTop: 16,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
+  },
+  sectionTitle: {
+    color: Colors.textPrimary,
+    fontSize: 14,
+    fontWeight: '700',
+    letterSpacing: 1,
+    marginBottom: 12,
+    paddingHorizontal: 16,
   },
   listContent: {
     paddingHorizontal: 12,

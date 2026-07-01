@@ -1,57 +1,86 @@
-# Welcome to your Expo app 👋
+# Catstagram EFSI
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicacion movil tipo Instagram creada con React Native y Expo SDK 54. Migra la logica del proyecto web anterior a componentes nativos, consumiendo imagenes de gatos desde una API externa y mostrando feed, historias, detalle de post y perfil.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Instalacion
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Estructura de app/
 
-### Other setup steps
+```
+app/
+  components/
+    ActionBar.jsx
+    CommentItem.jsx
+    FeedPost.jsx
+    ProfileGridItem.jsx
+    StoriesList.jsx
+  data/
+    mockComments.js
+    mockUsers.js
+  navigation/
+    AppNavigator.jsx
+  screens/
+    HomeScreen.jsx
+    PostDetailScreen.jsx
+    ProfileScreen.jsx
+  services/
+    catApi.js
+  styles/
+    colors.js
+    globalStyles.js
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Pantallas
 
-## Learn more
+- `HomeScreen`: carga posts de gatos al iniciar, muestra stories y renderiza el feed con `FlatList`.
+- `PostDetailScreen`: recibe el post por navegacion, muestra imagen grande, usuario, ubicacion, caption, comentarios y like funcional.
+- `ProfileScreen`: muestra avatar, biografia, estadisticas, boton "Editar perfil" y una grilla de publicaciones con `FlatList` y `numColumns={3}`.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Componentes
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- `FeedPost`: tarjeta reutilizable para cada publicacion del feed.
+- `StoriesList`: lista horizontal de historias integrada como `ListHeaderComponent` del feed.
+- `ProfileGridItem`: celda cuadrada reutilizable para la grilla del perfil.
+- `ActionBar`: botones de Me gusta, Comentar, Compartir y Guardar con `@expo/vector-icons`.
+- `CommentItem`: comentario simulado con usuario y texto.
 
-## Join the community
+## Estado y efectos
 
-Join our community of developers creating universal apps.
+- `useState` se usa para guardar posts cargados, estado de carga y likes activos en `HomeScreen`, `ProfileScreen`, `FeedPost` y `PostDetailScreen`.
+- `useEffect` se usa en `HomeScreen` y `ProfileScreen` para cargar datos al renderizar por primera vez.
+- Axios se usa en `app/services/catApi.js` para consumir `https://api.thecatapi.com/v1/images/search`.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-"# TP-8---Clon-m-vil-de-Instagram-react-native" 
+## FlatList
+
+- El feed de `HomeScreen` usa exclusivamente `FlatList`; no usa `ScrollView` con `.map()`.
+- Las stories usan `FlatList` horizontal.
+- El perfil usa `FlatList` con `numColumns={3}` para una grilla de tres columnas simetricas.
+
+## Diseno
+
+Se usaron capturas de referencia de Instagram movil: fondo blanco, texto negro, separadores grises suaves, barra superior tipo Instagram, iconografia similar e imagenes cuadradas.
+
+## Checklist
+
+- [x] Proyecto Expo con React Native.
+- [x] `App.js` importa `AppNavigator`.
+- [x] Navegacion con React Navigation, Native Stack y Bottom Tabs.
+- [x] Home, Profile y PostDetail conectados.
+- [x] Feed con API externa de gatos usando Axios.
+- [x] Minimo 10 imagenes cargadas y mapeadas a objetos post.
+- [x] Feed renderizado con `FlatList`.
+- [x] Stories horizontales integradas al feed.
+- [x] Likes funcionales con `useState`.
+- [x] Perfil con grilla `FlatList` y `numColumns={3}`.
+- [x] Componentes nativos: `View`, `Text`, `Image`, `Pressable`, `SafeAreaView`.
+- [x] Estilos con `StyleSheet.create()`.
+- [x] Iconos con `@expo/vector-icons`.
+- [x] Splash screen configurada con `expo-splash-screen`.
+- [x] Icono nativo configurado en `app.json`.
+- [x] Sin archivos CSS ni codigo web con `div`, `img`, `button` o `className`.
+- [x] Texto visible con contraste legible, sin estilos ocultos o transparentes.

@@ -7,12 +7,12 @@ const mockComments = [
   {
     id: 'c2',
     username: 'nico.feed',
-    text: 'Necesito adoptar uno igual.',
+    text: 'Hola a la mejor profe de EFSI(Angie).',
   },
   {
     id: 'c3',
     username: 'agus.design',
-    text: 'El encuadre esta muy Instagram.',
+    text: 'Necesito adoptar uno igual.',
   },
   {
     id: 'c4',

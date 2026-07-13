@@ -1,8 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import ActionBar from './ActionBar';
 import colors from '../styles/colors';
+import ActionBar from './ActionBar';
 
 export default function FeedPost({ post, onOpenPost }) {
   const [liked, setLiked] = useState(false);

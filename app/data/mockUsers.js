@@ -1,8 +1,8 @@
 const mockUsers = [
   {
-    username: 'michi.studio',
+    username: 'FranYMatiCats',
     name: 'Michi Studio',
-    avatar: 'https://i.pravatar.cc/150?img=5',
+    avatar: 'https://i.pravatar.cc/150?img=1',
     location: 'Palermo, Buenos Aires',
     bio: 'Fotos diarias, siestas largas y mucho estilo felino.',
   },
@@ -33,6 +33,13 @@ const mockUsers = [
     avatar: 'https://i.pravatar.cc/150?img=58',
     location: 'Villa Crespo',
     bio: 'Curaduria diaria de michis favoritos.',
+  },
+  {
+    username: 'gatitossss',
+    name: 'Gatita',
+    avatar: 'https://i.pravatar.cc/150?img=5',
+    location: 'Villa Lugano',
+    bio: 'Cuido gatos todos los dias.',
   },
 ];
 

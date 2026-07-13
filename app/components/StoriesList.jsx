@@ -6,7 +6,7 @@ const stories = [
   {
     id: 'you',
     username: 'Tu historia',
-    avatar: 'https://i.pravatar.cc/150?img=1',
+    avatar: 'https://i.pravatar.cc/150?img=5',
   },
 ];
 

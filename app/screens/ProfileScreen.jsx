@@ -9,7 +9,7 @@ import globalStyles from '../styles/globalStyles';
 
 const screenWidth = Dimensions.get('window').width;
 const gridSize = screenWidth / 3;
-const profile = mockUsers[0];
+const profile = mockUsers[5];
 
 export default function ProfileScreen({ navigation }) {
   const [posts, setPosts] = useState([]);
